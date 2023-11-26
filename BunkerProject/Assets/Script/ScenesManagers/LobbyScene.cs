@@ -23,7 +23,7 @@ internal class LobbyScene : MonoBehaviour
 
     public void SendToJoinGameScene()
     {
-        SceneManager.LoadScene("JoinGameScene");
+        SceneManager.LoadScene("RegistrationScene");
     }
 
     public void SendToRulesScene()
