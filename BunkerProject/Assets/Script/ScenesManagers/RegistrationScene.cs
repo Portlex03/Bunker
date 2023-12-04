@@ -1,18 +1,28 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class RegistrationScene : MonoBehaviour
+public class RegistrationScene : MonoBehaviourPunCallbacks
 {
     public InputField nickName;
 
+    public void Start()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+        nickName.text = PlayerPrefs.GetString("nickName");
+        PhotonNetwork.NickName = nickName.text;
+    }
+
     public void RegisterUser()
     {
-        GameKeeper.RegisterUser(nickName.text);
+        PlayerPrefs.SetString("nickName", nickName.text);
+        PhotonNetwork.NickName = nickName.text;
     }
 
     public void SendToLobbyScene()
     {
-        SceneManager.LoadScene("LobbyScene");
+        PhotonNetwork.LoadLevel("LobbyScene");
     }
 }

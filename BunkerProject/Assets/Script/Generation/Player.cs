@@ -2,11 +2,7 @@ using System.Collections.Generic;
 
 class Player
 {
-    public Player() { }
-    public Player(string nickName)
-    {
-        this.nickName = nickName;
-    }
+    private Dictionary<string, Item[]> info = new();
 
     public void AddFeatures(string feature, Item[] items)
     {
@@ -27,9 +23,5 @@ class Player
         }
         return result;
     }
-
-    private Dictionary<string,Item[]> info = new();
-    private string nickName;
-    public Dictionary<string,Item[]> Info { get => info; }
-    public string NickName { get => nickName; }
+    public Dictionary<string, Item[]> Info { get => info; }
 }

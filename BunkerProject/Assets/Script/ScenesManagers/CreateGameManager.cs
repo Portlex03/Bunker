@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-internal class CreateGameManager : MonoBehaviour
+
+internal class CreateGameManager : MonoBehaviourPun
 {
     public Text connectionCode;
 
-    private void Start()
+    void Start()
     {
-        connectionCode.text = new System.Random().Next(1001,10000).ToString();
+        connectionCode.text = PlayerPrefs.GetString("connectionCode");
     }
 
     public void SendToLobbyScene()
     {
-        SceneManager.LoadScene("LobbyScene");
+        PhotonNetwork.LoadLevel("LobbyScene");
     }
 
     public void CopyConnectionCode()

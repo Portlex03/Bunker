@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
 internal class LobbyScene : MonoBehaviour
 {
-    public Text lobbyText;
-
-    private void Start()
+    public void CreateRoom()
     {
-        lobbyText.text = GameKeeper.NickName;
+        string connectionCode = new System.Random().Next(1001, 10000).ToString();
+        PlayerPrefs.SetString("connectionCode", connectionCode);
+        RoomOptions roomOptions = new RoomOptions();
+        PhotonNetwork.CreateRoom(connectionCode, roomOptions);
     }
 
     public void SendToCreateGameScene()
     {
-        SceneManager.LoadScene("CreateGameScene");
+        PhotonNetwork.LoadLevel("CreateGameScene");
     }
 
     public void SendToJoinGameScene()
