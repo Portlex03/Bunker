@@ -6,10 +6,15 @@ using Photon.Pun;
 
 public class JoinRoomManager : MonoBehaviourPunCallbacks
 {
-    public Text connectionCode;
+    public InputField connectionCode;
 
-    public void JoinToRoom()
+    public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(connectionCode.text);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("CreateGameScene");
     }
 }

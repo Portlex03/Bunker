@@ -17,13 +17,13 @@ class Item
                 break;
             case 2:
                 attributeName = args[0];
-                description = args[1];
+                //description = args[1];
                 break;
             default:
                 throw new Exception($"Недопустимый размер данных: {args.Length}");
         }
     }
     private string attributeName;
-    private string? description;
+    // private string description = "";
     public string AttributeName {get => attributeName; }
 }

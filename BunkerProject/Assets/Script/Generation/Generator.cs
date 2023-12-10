@@ -7,15 +7,15 @@ namespace BunkerProject
 {
     class Generator
     {
-        public Generator(int countPeople, string pathForData)
+        public Generator(string pathForData)
         {
             d = new DirectoryInfo(pathForData);
-            players = new Player[countPeople];
         }
 
-        public IEnumerable<Player> GeneratePlayers()
+        public List<Player> GeneratePlayers(int countPeople)
         {
-            return players.Select(GeneratePlayer);
+            players = new Player[countPeople];
+            return players.Select(GeneratePlayer).ToList();
         }
 
         private Player GeneratePlayer(Player player)
@@ -37,7 +37,7 @@ namespace BunkerProject
             return player;
         }
 
-        private DirectoryInfo d;
+        private readonly DirectoryInfo d;
         private Player[] players;
     }
 }

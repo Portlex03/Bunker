@@ -8,21 +8,22 @@ public class RegistrationScene : MonoBehaviourPunCallbacks
 {
     public InputField nickName;
 
-    public void Start()
-    {
-        PhotonNetwork.ConnectUsingSettings();
-        nickName.text = PlayerPrefs.GetString("nickName");
-        PhotonNetwork.NickName = nickName.text;
-    }
-
     public void RegisterUser()
     {
         PlayerPrefs.SetString("nickName", nickName.text);
+    }
+    
+    public void ConnectToServer()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+        Debug.Log("Вы подключились к серверу");
+
         PhotonNetwork.NickName = nickName.text;
+        Debug.Log("Сохранено имя игрока: " + PlayerPrefs.GetString("nickName"));
     }
 
-    public void SendToLobbyScene()
+    public override void OnConnectedToMaster()
     {
-        PhotonNetwork.LoadLevel("LobbyScene");
+        SceneManager.LoadScene("LobbyScene");
     }
 }

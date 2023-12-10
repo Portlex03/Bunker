@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
-internal class LobbyScene : MonoBehaviour
+internal class LobbyScene : MonoBehaviourPunCallbacks
 {
     public void CreateRoom()
     {
@@ -19,14 +19,14 @@ internal class LobbyScene : MonoBehaviour
         PhotonNetwork.CreateRoom(connectionCode, roomOptions);
     }
 
-    public void SendToCreateGameScene()
+    public override void OnCreatedRoom()
     {
         PhotonNetwork.LoadLevel("CreateGameScene");
     }
 
     public void SendToJoinGameScene()
     {
-        SceneManager.LoadScene("RegistrationScene");
+        SceneManager.LoadScene("JoinRoomScene");
     }
 
     public void SendToRulesScene()
