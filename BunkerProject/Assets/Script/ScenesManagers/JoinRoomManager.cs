@@ -13,14 +13,8 @@ public class JoinRoomManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(connectionCode.text);
     }
 
-<<<<<<< Updated upstream
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("CreateGameScene");
-=======
-    public void SendToLobbyScene()
-    {
-        PhotonNetwork.LoadLevel("LobbyScene");
->>>>>>> Stashed changes
     }
 }

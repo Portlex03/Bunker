@@ -1156,7 +1156,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1158373705}
         m_TargetAssemblyTypeName: RegistrationScene, Assembly-CSharp
-<<<<<<< Updated upstream
         m_MethodName: RegisterUser
         m_Mode: 1
         m_Arguments:
@@ -1170,9 +1169,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1158373705}
         m_TargetAssemblyTypeName: RegistrationScene, Assembly-CSharp
         m_MethodName: ConnectToServer
-=======
-        m_MethodName: SendToCreateGameScene
->>>>>>> Stashed changes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
