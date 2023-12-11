@@ -22,8 +22,14 @@ public class RegistrationScene : MonoBehaviourPunCallbacks
         Debug.Log("Сохранено имя игрока: " + PlayerPrefs.GetString("nickName"));
     }
 
+<<<<<<< Updated upstream
     public override void OnConnectedToMaster()
     {
         SceneManager.LoadScene("LobbyScene");
+=======
+    public void SendToCreateGameScene()
+    {
+        PhotonNetwork.LoadLevel("CreateGameScene");
+>>>>>>> Stashed changes
     }
 }

@@ -35,4 +35,9 @@ internal class CreateGameManager : MonoBehaviourPun
     {
         GUIUtility.systemCopyBuffer = connectionCode.text;
     }
+
+    public void SendToBunkerHomeScene()
+    {
+        PhotonNetwork.LoadLevel("BunkerHomeScene");
+    }
 }
