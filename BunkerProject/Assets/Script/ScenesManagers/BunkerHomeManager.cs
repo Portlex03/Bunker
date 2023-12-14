@@ -8,6 +8,12 @@ using UnityEngine.UI;
 
 public class BunkerHomeManager : MonoBehaviourPun
 {
+    //ExitGames.Client.Photon.Hashtable roomProperties;
+    //public BunkerHomeManager()
+    //{
+    //    roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+    //}
+
     public Text[] DisasterInfoName;
     public Text[] DisasterInfo;
     public Text[] BunkerInfoName;

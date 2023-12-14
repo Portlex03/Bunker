@@ -10,6 +10,12 @@ using System;
 
 public class UserInfoManager : MonoBehaviourPun
 {    
+    //ExitGames.Client.Photon.Hashtable playerProperties;
+    //public UserInfoManager()
+    //{
+    //    playerProperties = PhotonNetwork.LocalPlayer.CustomProperties;
+    //}
+
     public Text[] characteristicName;
     public Text[] characteristic;
     void Start()
