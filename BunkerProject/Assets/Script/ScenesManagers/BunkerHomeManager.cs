@@ -27,7 +27,7 @@ public class BunkerHomeManager : MonoBehaviourPun
         for(int i=0; i<DisasterInfo.Length; i++)
         {
             DisasterInfoName[i].text = info_keys[i];
-            // как добавить описание к кактастрофе ...
+            // как добавить описание к катастрофе ...
         }
     }
 
