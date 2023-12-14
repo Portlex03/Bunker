@@ -26,7 +26,8 @@ namespace BunkerProject
             {
                 string feature = directory.Name[3..];
                 List<Item> items = new();
-                foreach (var file in directory.GetFiles())
+                var files = directory.GetFiles().Where(file => !file.Name.EndsWith(".meta"));
+                foreach (var file in files)
                 {
                     string[] fileData = File.ReadAllLines(file.FullName);
                     string attribute = fileData[new Random().Next(0, fileData.Length)];

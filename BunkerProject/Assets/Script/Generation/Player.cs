@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 class Player
 {
@@ -22,6 +23,15 @@ class Player
             result += $"{feature.Key}: {attributes}\n";
         }
         return result;
+    }
+    public string PrintNameFeatures()
+    {
+        return string.Join("\n", info.Keys);
+    }
+
+    public string PrintFeatures()
+    {
+        return string.Join(";\n", info.Values.Select(arr => string.Join(", ", arr.Select(item => item.AttributeName))));
     }
     public Dictionary<string, Item[]> Info { get => info; }
 }

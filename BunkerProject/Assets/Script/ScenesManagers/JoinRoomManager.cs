@@ -17,4 +17,14 @@ public class JoinRoomManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("CreateGameScene");
     }
+
+    public void SendToLobbyScene()
+    {
+        PhotonNetwork.LoadLevel("LobbyScene");
+    }
+
+    public void SendToCreateGameScene()
+    {
+        PhotonNetwork.LoadLevel("CreateGameScene");
+    }
 }
