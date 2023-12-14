@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class BunkerHomeManager : MonoBehaviourPun
 {
-        public void SendToUserInfoScene()
+    //ExitGames.Client.Photon.Hashtable roomProperties;
+    //public BunkerHomeManager()
+    //{
+    //    roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+    //}
+
+    public void SendToUserInfoScene()
     {
         PhotonNetwork.LoadLevel("UserInfoScene");
     }
