@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Photon.Realtime;
 
 namespace BunkerProject
 {
@@ -12,15 +13,15 @@ namespace BunkerProject
             d = new DirectoryInfo(pathForData);
         }
 
-        public List<Player> GeneratePlayers(int countPeople)
+        public List<UObject> GeneratePlayers(int countPeople)
         {
-            players = new Player[countPeople];
-            return players.Select(GeneratePlayer).ToList();
+            players = new UObject[countPeople];
+            return players.Select(GenerateInfo).ToList();
         }
 
-        private Player GeneratePlayer(Player player)
+        public UObject GenerateInfo(UObject obj)
         {
-            player = new Player();
+            obj = new UObject();
             var directories = d.GetDirectories();
             foreach (var directory in directories)
             {
@@ -33,12 +34,12 @@ namespace BunkerProject
                     string attribute = fileData[new Random().Next(0, fileData.Length)];
                     items.Add(new Item(attribute.Split(";")));
                 }
-                player.AddFeatures(feature, items.ToArray());
+                obj.AddFeature(feature, items.ToArray());
             }
-            return player;
+            return obj;
         }
 
         private readonly DirectoryInfo d;
-        private Player[] players;
+        private UObject[] players;
     }
 }

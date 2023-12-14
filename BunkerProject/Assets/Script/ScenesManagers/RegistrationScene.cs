@@ -24,6 +24,7 @@ public class RegistrationScene : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        Debug.Log("Перемещение в другую комнату...");
         SceneManager.LoadScene("LobbyScene");
     }
 }
