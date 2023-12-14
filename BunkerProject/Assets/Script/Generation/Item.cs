@@ -8,7 +8,7 @@ class Item
         this.attributeName = attributeName;
     }
 
-    public Item(string[] args)
+    public Item(string[] args, bool addDescription = false)
     {
         switch(args.Length)
         {
@@ -17,13 +17,13 @@ class Item
                 break;
             case 2:
                 attributeName = args[0];
-                //description = args[1];
+                if (addDescription) description = args[1];
                 break;
             default:
                 throw new Exception($"Недопустимый размер данных: {args.Length}");
         }
     }
     private string attributeName;
-    // private string description = "";
+    private string description = "";
     public string AttributeName {get => attributeName; }
 }
