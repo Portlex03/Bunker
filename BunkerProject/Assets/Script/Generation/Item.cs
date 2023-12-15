@@ -26,4 +26,5 @@ class Item
     private string attributeName;
     private string description = "";
     public string AttributeName {get => attributeName; }
+    public string Description {get => description; }
 }

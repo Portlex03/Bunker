@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BunkerProject;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,20 +15,33 @@ public class BunkerHomeManager : MonoBehaviourPun
     //    roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
     //}
 
-    public Text[] DisasterInfoName;
-    public Text[] DisasterInfo;
-    public Text[] BunkerInfoName;
-    public Text[] BunkerInfo;
+    public Text[] disasterInfoName;
+    public Text[] disasterInfo;
+    public Text[] bunkerInfoName;
+    public Text[] bunkerInfo;
     void Start()
     {
-        var disaster = new Generator(pathForData:"Assets/DataForGeneration/DisasterGeneration").GeneratePlayers(1)[0];
-        var info_keys = disaster.Info.Keys.ToArray();
-        var info_values = disaster.Info.Values.ToArray();
+        var disaster = new Generator(pathForData:"Assets/DataForGeneration/DisasterGeneration");
+        disaster.WantToAddDescription(true);
 
-        for(int i=0; i<DisasterInfo.Length; i++)
+        var disaster_info = disaster.GeneratePlayers(1)[0].Info;
+        var info_keys = disaster_info.Keys.ToArray();
+        var info_values = disaster_info.Values.ToArray();
+
+        for(int i=0; i<disasterInfo.Length; i++)
         {
-            DisasterInfoName[i].text = info_keys[i];
-            // как добавить описание к катастрофе ...
+            disasterInfoName[i].text = info_keys[i];
+            disasterInfo[i].text = string.Join(", ", info_values[i].Select(item => item.AttributeName + item.Description));
+        }
+
+        var bunker = new Generator(pathForData:"Assets/DataForGeneration/BunkerGeneration").GeneratePlayers(1)[0];
+        info_keys = bunker.Info.Keys.ToArray();
+        info_values = bunker.Info.Values.ToArray();
+
+        for(int i=0; i<bunkerInfo.Length; i++)
+        {
+            bunkerInfoName[i].text = info_keys[i];
+            bunkerInfo[i].text = string.Join(", ", info_values[i].Select(item => item.AttributeName)) + ";";
         }
     }
 

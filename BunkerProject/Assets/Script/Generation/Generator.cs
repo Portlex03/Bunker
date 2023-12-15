@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Photon.Realtime;
+using UnityEditor.SceneManagement;
 
 namespace BunkerProject
 {
@@ -32,12 +33,14 @@ namespace BunkerProject
                 {
                     string[] fileData = File.ReadAllLines(file.FullName);
                     string attribute = fileData[new Random().Next(0, fileData.Length)];
-                    items.Add(new Item(attribute.Split(";")));
+                    items.Add(new Item(attribute.Split(";"), addDescription));
                 }
                 obj.AddFeature(feature, items.ToArray());
             }
             return obj;
         }
+        public void WantToAddDescription(bool mark) => addDescription = mark;
+        private bool addDescription = false;
 
         private readonly DirectoryInfo d;
         private UObject[] players;
