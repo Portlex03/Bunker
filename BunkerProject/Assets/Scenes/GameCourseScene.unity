@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 243248575}
   - component: {fileID: 243248574}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243248572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d207ef25b52a4dc4d8007fff15eebe33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e72e2d92336d0cc428886fd1ad23735c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -577,6 +577,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ca5ea9935e55a47940c0092320c17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPositions:
+  - {fileID: 6522346794103106858, guid: 90eb78cf31fdac0409b5931c0cdd2058, type: 3}
+  - {fileID: 6522346794103106858, guid: be0d28f1eec3e73458dd3ad93fdf9bda, type: 3}
+  - {fileID: 6522346794103106858, guid: de212a573afa46146b9ae33609884070, type: 3}
+  - {fileID: 6522346794103106858, guid: ba30fcca83d834a4090243d7900dda84, type: 3}
+  - {fileID: 6522346794103106858, guid: 0179f5d64577bb548b32203c002c7cfa, type: 3}
+  - {fileID: 6522346794103106858, guid: 891920b2152a6df4e855f544d8c02d0d, type: 3}
+  - {fileID: 6522346794103106858, guid: 0e8f046aa013ac04f8f69b96275feb6d, type: 3}
+  - {fileID: 6522346794103106858, guid: 1514fb55ab73f654f8359c092481b768, type: 3}
+  texts: []
 --- !u!1 &1600107653
 GameObject:
   m_ObjectHideFlags: 0
