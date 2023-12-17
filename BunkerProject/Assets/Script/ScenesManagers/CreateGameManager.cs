@@ -27,11 +27,6 @@ internal class CreateGameManager : MonoBehaviourPun
         readyOrNot[index].text = "Готов";
     }
 
-    public void SendToLobbyScene()
-    {
-        PhotonNetwork.LoadLevel("LobbyScene");
-    }
-
     public void CopyConnectionCode()
     {
         GUIUtility.systemCopyBuffer = connectionCode.text;
