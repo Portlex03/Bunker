@@ -38,7 +38,7 @@ internal class CreateGameManager : MonoBehaviourPun
         
         SetBunkerSettings();
 
-        PhotonNetwork.LoadLevel("BunkerHomeScene");
+        PhotonNetwork.LoadLevel("1_BunkerHomeScene");
     }
 
     private void SetBunkerSettings()

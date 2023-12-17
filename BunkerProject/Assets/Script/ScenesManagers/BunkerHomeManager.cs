@@ -41,16 +41,16 @@ public class BunkerHomeManager : MonoBehaviourPun
 
     public void SendToUserInfoScene()
     {
-        PhotonNetwork.LoadLevel("UserInfoScene");
+        PhotonNetwork.LoadLevel("2_UserInfoScene");
     }
 
     public void SendToGameCourseScene()
     {
-        PhotonNetwork.LoadLevel("GameCourseScene");
+        PhotonNetwork.LoadLevel("3_GameCourseScene");
     }
 
     public void SendToUsersInfoScene()
     {
-        PhotonNetwork.LoadLevel("UsersInfoScene");
+        PhotonNetwork.LoadLevel("4_UsersInfoScene");
     }   
 }

@@ -1,5 +1,6 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,33 +9,55 @@ public class GameCourseManager : MonoBehaviourPun
 {
     public GameObject[] playerPositions;
     public Text[] playerNames;
+    public GameObject notification;
+    public Text notificationText;
     private int playerCount;
     private Player[] playerList;
+    private static GameLogic gameLogic;
 
-    public GameCourseManager()
+    //public GameCourseManager()
+    //{
+    //    playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+    //    playerList = PhotonNetwork.PlayerList;
+    //    gameLogic = new GameLogic();
+    //}
+
+    //private void Start()
+    //{
+    //    Instantiate(playerPositions[playerCount - 1]);
+
+    //    playerNames = FindObjectsOfType<Text>()[..playerCount].Reverse().ToArray();
+
+    //    FillPlayerNames();
+    //}
+
+    // для тестов
+    static GameCourseManager()
     {
-        playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-        playerList = PhotonNetwork.PlayerList;
+        gameLogic = new GameLogic();
     }
 
     private void Start()
-    {
+    {       
+        playerCount = 5;
+
         Instantiate(playerPositions[playerCount - 1]);
 
-        playerNames = FindObjectsOfType<Text>().Reverse().ToArray();
-
-        FillTexts();
+        playerNames = FindObjectsOfType<Text>()[..playerCount].Reverse().ToArray();
     }
 
-    // для тестов
-    //private void Start()
-    //{
-    //    Instantiate(playerPositions[0]);
+    private void Update()
+    {
+        gameLogic.Manage();
 
-    //    playerNames = FindObjectsOfType<Text>();
-    //}
+        gameLogic.Timer = PlayerPrefs.GetFloat("timer") - Time.deltaTime;
 
-    private void FillTexts()
+        notificationText.text = gameLogic.Message + "\nВремя: " + GetNormalTime(gameLogic.Timer);
+        
+        PlayerPrefs.SetFloat("timer", gameLogic.Timer);
+    }
+
+    private void FillPlayerNames()
     {
         for (int i = 0; i < playerList.Length; i++)
         {
@@ -42,18 +65,24 @@ public class GameCourseManager : MonoBehaviourPun
         }
     }
 
+    private string GetNormalTime(float seconds)
+    {
+        TimeSpan t = TimeSpan.FromSeconds(seconds);
+        return string.Format("{0:D2}m:{1:D2}s", t.Minutes, t.Seconds);
+    }
+
     public void SendToBunkerHomeScene()
     {
-        PhotonNetwork.LoadLevel("BunkerHomeScene");
+        PhotonNetwork.LoadLevel("1_BunkerHomeScene");
     }
 
     public void SendToUserInfoScene()
     {
-        PhotonNetwork.LoadLevel("UserInfoScene");
+        PhotonNetwork.LoadLevel("2_UserInfoScene");
     }
 
     public void SendToUsersInfoScene()
     {
-        PhotonNetwork.LoadLevel("UsersInfoScene");
+        PhotonNetwork.LoadLevel("4_UsersInfoScene");
     }   
 }

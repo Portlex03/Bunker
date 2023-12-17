@@ -7,15 +7,15 @@ public class UsersInfoManager : MonoBehaviourPun
 {
     public void SendToBunkerHomeScene()
     {
-        PhotonNetwork.LoadLevel("BunkerHomeScene");
+        PhotonNetwork.LoadLevel("1_BunkerHomeScene");
     }
     public void SendToUserInfoScene()
     {
-        PhotonNetwork.LoadLevel("UserInfoScene");
+        PhotonNetwork.LoadLevel("2_UserInfoScene");
     }
 
     public void SendToGameCourseScene()
     {
-        PhotonNetwork.LoadLevel("GameCourseScene");
+        PhotonNetwork.LoadLevel("3_GameCourseScene");
     }
 }
