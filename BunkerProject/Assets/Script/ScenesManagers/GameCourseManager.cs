@@ -15,35 +15,28 @@ public class GameCourseManager : MonoBehaviourPun
     private Player[] playerList;
     private static GameLogic gameLogic;
 
-    //public GameCourseManager()
-    //{
-    //    playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-    //    playerList = PhotonNetwork.PlayerList;
-    //    gameLogic = new GameLogic();
-    //}
 
-    //private void Start()
-    //{
-    //    Instantiate(playerPositions[playerCount - 1]);
+    public GameCourseManager()
+    {
+        playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        playerList = PhotonNetwork.PlayerList;
+    }
 
-    //    playerNames = FindObjectsOfType<Text>()[..playerCount].Reverse().ToArray();
-
-    //    FillPlayerNames();
-    //}
-
-    // для тестов
     static GameCourseManager()
     {
         gameLogic = new GameLogic();
     }
 
     private void Start()
-    {       
-        playerCount = 5;
-
+    {
         Instantiate(playerPositions[playerCount - 1]);
 
         playerNames = FindObjectsOfType<Text>()[..playerCount].Reverse().ToArray();
+
+        FillPlayerNames();
+
+        if (!gameLogic.HasPlayers)
+            gameLogic.GetPlayers(PhotonNetwork.PlayerList);
     }
 
     private void Update()
@@ -53,9 +46,19 @@ public class GameCourseManager : MonoBehaviourPun
         gameLogic.Timer = PlayerPrefs.GetFloat("timer") - Time.deltaTime;
 
         notificationText.text = gameLogic.Message + "\nВремя: " + GetNormalTime(gameLogic.Timer);
-        
+
         PlayerPrefs.SetFloat("timer", gameLogic.Timer);
     }
+
+    // для тестов
+    //private void Start()
+    //{       
+    //    playerCount = 5;
+
+    //    Instantiate(playerPositions[playerCount - 1]);
+
+    //    playerNames = FindObjectsOfType<Text>()[..playerCount].Reverse().ToArray();
+    //}
 
     private void FillPlayerNames()
     {

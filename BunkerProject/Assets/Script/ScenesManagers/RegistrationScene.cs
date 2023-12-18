@@ -16,15 +16,12 @@ public class RegistrationScene : MonoBehaviourPunCallbacks
     public void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings();
-        Debug.Log("Вы подключились к серверу");
 
         PhotonNetwork.NickName = nickName.text;
-        Debug.Log("Сохранено имя игрока: " + PlayerPrefs.GetString("nickName"));
     }
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Перемещение в другую комнату...");
         SceneManager.LoadScene("LobbyScene");
     }
 }

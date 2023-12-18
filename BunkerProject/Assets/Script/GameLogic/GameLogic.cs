@@ -1,14 +1,15 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class GameLogic
+internal class GameLogic : MonoBehaviourPun
 {
     public float Timer { get; set; }
     public string Message { get; private set; }
+    public Player[] PlayerList { get; set; }
+    public bool HasPlayers { get; private set; } = false;
 
     private Dictionary<int, Action> actionsDict;
     private Queue<Player> queue;
@@ -23,6 +24,13 @@ internal class GameLogic
             { 2, GetPlayerProperty },
             { 3, Voting }
         };
+        queue = new Queue<Player>();
+    }
+
+    public void GetPlayers(Player[] playerList)
+    {
+        PlayerList = playerList;
+        HasPlayers = true;
     }
 
     public void Manage()
@@ -36,10 +44,9 @@ internal class GameLogic
 
     void FillQueue()
     {
-        var playerList = PhotonNetwork.PlayerList;
-        for (int i = 0; i < playerList.Length; i++)
+        for (int i = 0; i < PlayerList.Length; i++)
         {
-            queue.Enqueue(playerList[i]);
+            queue.Enqueue(PlayerList[i]);
         }
         Timer = 1;
         Message = "Заполение данных";
@@ -60,7 +67,7 @@ internal class GameLogic
 
     void GetPlayerProperty()
     {
-        if ((int)Timer == 0 && queue.Count > 1)
+        if ((int)Timer == 0)
         {
             Timer = 30;
             PlayerPrefs.SetFloat("timer", Timer);
@@ -75,7 +82,7 @@ internal class GameLogic
         if (queue.Count > 1)
             index -= 1;
 
-        Message = $"Игрок {PlayerPrefs.GetString("Queue.Name")} должен открыть свою характеристику.\n" +
+        Message = $"Игрок << {PlayerPrefs.GetString("Queue.Name")} >> должен открыть свою характеристику.\n" +
                    "Иначе она откроется случайным образом";
 
     }

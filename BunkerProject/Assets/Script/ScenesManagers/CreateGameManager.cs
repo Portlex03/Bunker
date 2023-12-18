@@ -47,7 +47,15 @@ internal class CreateGameManager : MonoBehaviourPun
         
         var bunker = generator.GenerateInfo(new UObject());
 
-        PhotonNetwork.CurrentRoom.CustomProperties.Merge(bunker.Info);
+        //PhotonNetwork.CurrentRoom.CustomProperties.Merge(bunker.Info);
+        PhotonNetwork.CurrentRoom.CustomProperties["BunkerInfo"] = bunker.Info;
+
+        generator = new Generator(pathForData: "Assets/DataForGeneration/DisasterGeneration");
+        generator.WantToAddDescription(true);
+        
+        var disaster = generator.GenerateInfo(new UObject());
+        
+        PhotonNetwork.CurrentRoom.CustomProperties["DisasterInfo"] = disaster.Info;
     }
 
     private void SetPlayerSettings()
@@ -58,7 +66,8 @@ internal class CreateGameManager : MonoBehaviourPun
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            PhotonNetwork.PlayerList[i].CustomProperties.Merge(players[i].Info);
+            //PhotonNetwork.PlayerList[i].CustomProperties.Merge(players[i].Info);
+            PhotonNetwork.PlayerList[i].CustomProperties["ClosedInfo"] = players[i].Info;
         }
     }
 }
