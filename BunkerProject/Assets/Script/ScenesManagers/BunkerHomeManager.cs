@@ -1,6 +1,7 @@
 using System.Linq;
 using BunkerProject;
 using Photon.Pun;
+using UnityEngine;
 using UnityEngine.UI;
 using Dict = System.Collections.Generic.Dictionary<string, Item[]>;
 
@@ -26,9 +27,10 @@ public class BunkerHomeManager : MonoBehaviourPun
         {
             disasterInfoName[i].text = info_keys[i];
             disasterInfo[i].text = string.Join(", ", info_values[i].Select(
-                item => item.AttributeName + item.Description)
+                item => item.AttributeName + ". " + item.Description)
             );
         }
+        // UpdateFontSize(disasterInfo[0]);
 
         info_keys = ((Dict)roomProperties["BunkerInfo"]).Keys.ToArray();
         info_values = ((Dict)roomProperties["BunkerInfo"]).Values.ToArray();
@@ -81,4 +83,24 @@ public class BunkerHomeManager : MonoBehaviourPun
     {
         PhotonNetwork.LoadLevel("4_UsersInfoScene");
     }   
+    public float minFontSize = 10f;
+    public float maxFontSize = 100f;
+
+    // Метод, который будет вызываться при изменении размера экрана
+    void UpdateFontSize(Text text)
+    {
+        float screenHeight = Screen.height;
+        float textHeight = LayoutUtility.GetPreferredHeight(text.rectTransform);
+        
+        float scaleFactor = screenHeight / textHeight;
+
+        if (scaleFactor < 1)
+        {
+            text.fontSize = (int)Mathf.Max(minFontSize, text.fontSize * scaleFactor);
+        }
+        else
+        {
+            text.fontSize = (int)Mathf.Min(maxFontSize, text.fontSize * scaleFactor);
+        }
+    }
 }

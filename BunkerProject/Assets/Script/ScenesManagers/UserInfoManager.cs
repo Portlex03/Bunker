@@ -7,6 +7,7 @@ public class UserInfoManager : MonoBehaviourPun
 {
     public Text[] characteristicName;
     public Text[] characteristic;
+    public Text infoAboutText;
     ExitGames.Client.Photon.Hashtable playerProperties;
     public UserInfoManager()
     {
@@ -15,6 +16,8 @@ public class UserInfoManager : MonoBehaviourPun
 
     private void Start()
     {
+        infoAboutText.text += "\n"+PhotonNetwork.LocalPlayer.NickName;
+
         var info_keys = ((Dict)playerProperties["ClosedInfo"]).Keys.ToArray();
         var info_values = ((Dict)playerProperties["ClosedInfo"]).Values.ToArray();
 

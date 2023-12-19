@@ -1,4 +1,6 @@
-﻿using BunkerProject;
+﻿using System.Collections.Generic;
+using System.Linq;
+using BunkerProject;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -66,8 +68,16 @@ internal class CreateGameManager : MonoBehaviourPun
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
-            //PhotonNetwork.PlayerList[i].CustomProperties.Merge(players[i].Info);
+            // PhotonNetwork.PlayerList[i].CustomProperties.Merge(players[i].Info);
             PhotonNetwork.PlayerList[i].CustomProperties["ClosedInfo"] = players[i].Info;
+
+            PhotonNetwork.PlayerList[i].CustomProperties["OpenedInfo"] = new Dictionary<string, Item[]>();
+            var keys = players[i].Info.Keys.ToArray();
+            for(int j=0; j<keys.Length; j++)
+            {
+                ((Dictionary<string, Item[]>)
+                    PhotonNetwork.PlayerList[i].CustomProperties["OpenedInfo"])[keys[i]] = new Item[] {new Item("------")};
+            }
         }
     }
 }
