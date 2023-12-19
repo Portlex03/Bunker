@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Dict = System.Collections.Generic.Dictionary<string, Item[]>;
 
 
 internal class CreateGameManager : MonoBehaviourPun
