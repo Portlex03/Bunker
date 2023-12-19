@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Dict = System.Collections.Generic.Dictionary<string, Item[]>;
 
 
 internal class CreateGameManager : MonoBehaviourPun
@@ -68,6 +69,13 @@ internal class CreateGameManager : MonoBehaviourPun
         {
             //PhotonNetwork.PlayerList[i].CustomProperties.Merge(players[i].Info);
             PhotonNetwork.PlayerList[i].CustomProperties["ClosedInfo"] = players[i].Info;
+
+            // PhotonNetwork.PlayerList[i].CustomProperties["OpenedInfo"] = new Dict();
+            // var keys = players[i].Info.Keys.ToArray();
+            // for(int j=0; j<keys.Length; j++)
+            // {
+            //     ((Dict) PhotonNetwork.PlayerList[i].CustomProperties["OpenedInfo"])[keys[i]] = new Item[] {new Item("------")};
+            // }
         }
     }
 }
